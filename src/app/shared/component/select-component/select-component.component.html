@@ -1,9 +1,16 @@
-<div class="select-wrapper">
+<div class="select-group" *ngIf="control">
   <label>{{ label }}</label>
-  <select (change)="onChange($event)">
-    <option value="">-- Seleccionar --</option>
-    <option *ngFor="let option of options" [value]="option.id">
-      {{ option.name }}
-    </option>
-  </select>
+
+  <div class="select-wrapper">
+    <select [value]="control.value" (change)="onChange($event)">
+      <option value="" disabled selected>Seleccione {{ label }}</option>
+      <option *ngFor="let country of options" [value]="country.id">
+        {{ country.name }}
+      </option>
+    </select>
+  </div>
+
+  <div class="error" *ngIf="control.invalid && control.touched">
+    <span>{{ label }} es obligatorio</span>
+  </div>
 </div>

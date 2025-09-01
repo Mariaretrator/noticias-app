@@ -1,24 +1,22 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
-import { User, Country } from '../../interface/user.interface';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { User, Country } from '../../interface/user.interface';
 import { CountryService } from '../../service/country.service';
 
 @Component({
   selector: 'app-user-form',
   templateUrl: './user-form-component.component.html',
-  styleUrls: ['./user-form-component.component.scss'],
-  standalone: false
+  styleUrls: ['./user-form-component.component.scss']
 })
-export class UserFormComponentComponent implements OnInit {
+export class UserFormComponent implements OnInit {
   @Output() submitForm = new EventEmitter<User>();
   form!: FormGroup;
-
-  registerForm!: FormGroup;
   countries: Country[] = [];
 
-  constructor(private fb: FormBuilder, private countryService: CountryService) {}
+  constructor(
+    private fb: FormBuilder,
+    private countryService: CountryService
+  ) {}
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -26,23 +24,24 @@ export class UserFormComponentComponent implements OnInit {
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
-      country: ['', Validators.required], // aquí guardas solo el string
+      country: ['', Validators.required]
     });
 
-    // Consumir API de países desde un servicio
-    this.countryService.getCountries().subscribe(data => {
-      this.countries = data;
+    this.countryService.getCountries().subscribe({
+      next: (data) => (this.countries = data),
+      error: (err) => console.error('Error cargando países:', err)
     });
   }
 
   onCountrySelected(country: Country) {
-    this.registerForm.patchValue({ country: country.name
-     });
+    this.form.patchValue({ country });
   }
 
   onSubmit() {
     if (this.form.valid) {
-      this.submitForm.emit(this.form.value); 
+      this.submitForm.emit(this.form.value);
+    } else {
+      this.form.markAllAsTouched();
     }
   }
 }

@@ -1,3 +1,12 @@
-<p>
-  input-component works!
-</p>
+<div class="input-group" *ngIf="formControl">
+  <label>{{ label }}</label>
+  <input 
+    class="input"
+    [type]="type" 
+    [formControl]="formControl"/>
+
+  <div class="error" *ngIf="formControl.invalid && formControl.touched">
+    <span *ngIf="formControl.hasError('required')">{{ label }} es obligatorio</span>
+    <span *ngIf="formControl.hasError('email')">Correo no válido</span>
+  </div>
+</div>

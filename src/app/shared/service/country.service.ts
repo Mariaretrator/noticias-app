@@ -5,16 +5,16 @@ import { Country } from '../interface/user.interface';
 
 @Injectable({ providedIn: 'root' })
 export class CountryService {
-  private apiUrl = 'https://restcountries.com/v3.1/all';
+  private apiUrl = 'https://countriesnow.space/api/v0.1/countries/flag/unicode';
 
   constructor(private http: HttpClient) {}
 
   getCountries(): Observable<Country[]> {
-    return this.http.get<any[]>(this.apiUrl).pipe(
-      map((countries: any[]) =>
-        countries.map((country: any): Country => ({
-          id: country.cca3,
-          name: country.name.common
+    return this.http.get<any>(this.apiUrl).pipe(
+      map((response: any) =>
+        response.data.map((country: any, index: number): Country => ({
+          id: index.toString(),
+          name: `${country.unicodeFlag} ${country.name}`
         }))
       )
     );

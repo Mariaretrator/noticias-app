@@ -1,0 +1,18 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { AuthResponse } from '../interface/auth-response.interface';
+import { User } from '../interface/user.interface';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class UserService {
+  private apiUrl = 'https://api.miapp.com/users';
+
+  constructor(private http: HttpClient) {}
+
+  register(user: User): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(`${this.apiUrl}/register`, user);
+  }
+}

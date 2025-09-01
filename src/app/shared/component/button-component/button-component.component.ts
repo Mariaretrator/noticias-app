@@ -1,15 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Router } from '@angular/router';
+import { User } from '../../interface/user.interface';
 
 @Component({
-  selector: 'app-button-component',
+  selector: 'app-button',
   templateUrl: './button-component.component.html',
   styleUrls: ['./button-component.component.scss'],
-  standalone : false
+  standalone: false,
 })
-export class ButtonComponentComponent  implements OnInit {
+export class ButtonComponent {
+  @Input() label: string = 'Enviar';
+  @Input() userData!: User;           
+  @Output() onClick = new EventEmitter<void>();
 
-  constructor() { }
+  constructor(private router: Router) {}
 
-  ngOnInit() {}
+  handleClick() {
+    if (this.userData) {
+      localStorage.setItem('user', JSON.stringify(this.userData));
 
+      this.onClick.emit();
+      this.router.navigate(['/login']);
+    } else {
+      console.warn('No hay datos del usuario para guardar');
+    }
+  }
 }

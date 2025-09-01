@@ -1,3 +1,13 @@
-<p>
-  user-form-component works!
-</p>
+<form (ngSubmit)="onSubmit()">
+  <input type="text" placeholder="Nombre" [(ngModel)]="user.name" name="name" required>
+  <input type="text" placeholder="Apellido" [(ngModel)]="user.lastName" name="lastName" required>
+  <input type="email" placeholder="Email" [(ngModel)]="user.email" name="email" required>
+  <input type="password" placeholder="Contraseña" [(ngModel)]="user.password" name="password" required>
+
+  <app-select [options]="countries" label="Selecciona tu país" (selected)="onSelectCountry($event)">
+  </app-select>
+
+  <!-- <app-button [label]="'Registrarme'" [userData]="registerForm.value">
+  </app-button> -->
+
+</form>

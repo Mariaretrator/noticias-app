@@ -1,25 +1,24 @@
-{ pkgs }:
-{
+{pkgs}: {
   channel = "stable-24.05";
-
   packages = [
-    (pkgs.nodejs_20.override { version = "20.19.0"; })
-    pkgs.yarn
-    pkgs.curl
+    pkgs.nodejs_20
   ];
-
   idx.extensions = [
     "angular.ng-template"
   ];
-
-  idx.previews = {
+idx.previews = {
     previews = {
       web = {
         command = [
-          "ionic"
-          "serve"
-          "--host=0.0.0.0"
-          "--port=$PORT"
+          "npm"
+          "run"
+          "start"
+          "--"
+          "--port"
+          "$PORT"
+          "--host"
+          "0.0.0.0"
+          "--disable-host-check"
         ];
         manager = "web";
       };

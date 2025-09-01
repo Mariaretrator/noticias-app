@@ -29,3 +29,6 @@ Content-Type: application/json
   "email": "jane@doe.com",
   "password": "123456"
 }
+
+
+- npx ionic serve --host=0.0.0.0 --port=8100

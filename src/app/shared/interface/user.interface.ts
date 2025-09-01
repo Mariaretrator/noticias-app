@@ -1,6 +1,6 @@
 export interface Country {
     id: string;
-    value: string; 
+    name : string; 
   }
   
   export interface User {

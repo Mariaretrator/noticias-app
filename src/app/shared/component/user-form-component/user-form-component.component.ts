@@ -1,6 +1,9 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { User, Country } from '../../interface/user.interface';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CountryService } from '../../service/country.service';
 
 @Component({
   selector: 'app-user-form',
@@ -9,38 +12,37 @@ import { User, Country } from '../../interface/user.interface';
   standalone: false
 })
 export class UserFormComponentComponent implements OnInit {
-
   @Output() submitForm = new EventEmitter<User>();
+  form!: FormGroup;
 
+  registerForm!: FormGroup;
   countries: Country[] = [];
-  user: User = {
-    name: '',
-    lastName: '',
-    email: '',
-    password: '',
-    country: { id: '', value: '' }
-  };
 
-  constructor(private http: HttpClient) { }
+  constructor(private fb: FormBuilder, private countryService: CountryService) {}
 
   ngOnInit() {
-    this.http.get<any>('https://countriesnow.space/api/v0.1/countries/flag/unicode')
-      .subscribe({
-        next: (res) => {
-          this.countries = res.data.map((c: any, i: number) => ({
-            id: i.toString(),
-            value: `${c.unicodeFlag} ${c.name}`
-          }));
-        },
-        error: (err) => console.error('Error cargando países:', err)
-      });
+    this.form = this.fb.group({
+      name: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+      country: ['', Validators.required], // aquí guardas solo el string
+    });
+
+    // Consumir API de países desde un servicio
+    this.countryService.getCountries().subscribe(data => {
+      this.countries = data;
+    });
   }
 
-  onSelectCountry(country: Country) {
-    this.user.country = country;
+  onCountrySelected(country: Country) {
+    this.registerForm.patchValue({ country: country.name
+     });
   }
 
   onSubmit() {
-    this.submitForm.emit(this.user);
+    if (this.form.valid) {
+      this.submitForm.emit(this.form.value); 
+    }
   }
 }

@@ -7,8 +7,8 @@ import { ButtonComponentComponent } from './component/button-component/button-co
 import { InputComponent } from './component/input-component/input-component.component';
 import { UserFormComponent } from './component/user-form-component/user-form-component.component';
 import { ListComponent } from './component/list-component/list-component.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { HeaderComponent } from './components/header/header.component';
+import { SidebarComponent } from './component/sidebar/sidebar.component';
+import { HeaderComponent } from './component/input-component/header/header.component';
 
 
 const MODULO = [CommonModule, FormsModule, IonicModule , ReactiveFormsModule];

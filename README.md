@@ -1,14 +1,43 @@
 # noticias-app
 
-- Para correr el servidor 
-1. cd src/server
-2.Corre el servidor:
+Esta es una aplicación de noticias construida con Ionic y Angular.
+
+## Cómo ejecutar la aplicación
+
+### 1. Ejecutar el servidor
+
+El servidor es necesario para que la aplicación funcione correctamente.
+
+```bash
+cd src/server
 npm run server
+```
 
-- Registro con Postman
-POST http://localhost:3000/register
-Content-Type: application/json
+El servidor se ejecutará en `http://localhost:3000`.
 
+### 2. Ejecutar la aplicación Ionic
+
+Para ejecutar la aplicación en un entorno de desarrollo, utiliza el siguiente comando:
+
+```bash
+ionic serve
+```
+
+Esto abrirá la aplicación en tu navegador en `http://localhost:8100`.
+
+## Endpoints de la API
+
+Puedes utilizar una herramienta como Postman para interactuar con la API.
+
+### Registro
+
+*   **URL:** `http://localhost:3000/register`
+*   **Método:** `POST`
+*   **Cabeceras:**
+    *   `Content-Type`: `application/json`
+*   **Cuerpo:**
+
+```json
 {
   "name": "Jane",
   "lastName": "Doe",
@@ -19,16 +48,24 @@ Content-Type: application/json
     "value": "🇨🇴 Colombia"
   }
 }
+```
 
+### Iniciar Sesión
 
-- login 
-POST http://localhost:3000/login
-Content-Type: application/json
+*   **URL:** `http://localhost:3000/login`
+*   **Método:** `POST`
+*   **Cabeceras:**
+    *   `Content-Type`: `application/json`
+*   **Cuerpo:**
 
+```json
 {
   "email": "jane@doe.com",
   "password": "123456"
 }
+```
 
+## APIs Utilizadas
 
-- npx ionic serve --host=0.0.0.0 --port=8100
+*   **News API:** [https://newsapi.org/](https://newsapi.org/) - Utilizada para obtener las noticias.
+*   **Countries API:** [https://countriesnow.space/api/v0.1/countries/flag/unicode](https://countriesnow.space/api/v0.1/countries/flag/unicode) - Utilizada para obtener la lista de países para el selector.

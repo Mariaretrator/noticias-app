@@ -1,19 +1,40 @@
-.sidebar-container {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 250px;
-  height: 100%;
-  background: #ffffff;
-  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
-  padding-top: 60px; /* Space for the header */
+ion-menu::part(backdrop) {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+ion-menu::part(container) {
+  border-radius: 0 20px 20px 0;
+  box-shadow: 4px 0px 15px rgba(0, 0, 0, 0.1);
+}
+
+ion-content {
+  --background: var(--ion-background-color, #fff);
+}
+
+ion-list {
+  padding: 20px;
 }
 
 ion-item {
   --padding-start: 20px;
+  --inner-padding-end: 20px;
+  --min-height: 50px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  transition: background-color 0.3s;
+}
+
+ion-item:hover {
+  background-color: var(--ion-color-light-shade, #f0f0f0);
+}
+
+ion-label {
+  font-weight: 500;
+  font-size: 1.1rem;
+  color: var(--ion-text-color, #000);
 }
 
 ion-icon {
-  margin-right: 15px;
+  margin-right: 20px;
+  color: var(--ion-color-primary, #3880ff);
 }

@@ -1,16 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { IonInfiniteScroll } from '@ionic/angular';
 import { NewsService } from 'src/app/shared/service/news.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
-  standalone : false
 })
 export class HomePage implements OnInit {
+  @ViewChild(IonInfiniteScroll, { static: false }) infiniteScroll!: IonInfiniteScroll;
   isSidebarOpen = false;
   articles: any[] = [];
   selectedArticle: any = null;
+  page = 1;
 
   constructor(private newsService: NewsService) {}
 
@@ -27,16 +29,29 @@ export class HomePage implements OnInit {
     this.isSidebarOpen = false;
   }
 
-  loadNews() {
-    this.newsService.getEverything('bitcoin').subscribe(
+  loadNews(event?: any) {
+    this.newsService.getEverything('bitcoin', this.page).subscribe(
       (res) => {
-        this.articles = res.articles;
-        console.log('Artículos:', this.articles);
+        this.articles = this.articles.concat(res.articles);
+        if (event) {
+          event.target.complete();
+        }
+        if (res.articles.length === 0 && this.infiniteScroll) {
+          this.infiniteScroll.disabled = true;
+        }
       },
       (err) => {
         console.error('Error al consumir la API:', err);
+        if (event) {
+          event.target.complete();
+        }
       }
     );
+  }
+
+  loadData(event: any) {
+    this.page++;
+    this.loadNews(event);
   }
 
   openArticle(article: any) {

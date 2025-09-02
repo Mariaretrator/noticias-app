@@ -5,25 +5,40 @@
   (optionSelected)="onSidebarOption($event)">
 </app-sidebar>
 
-<div class="content">
+<ion-content>
+  <div class="content">
 
-  <div *ngIf="!selectedArticle">
-    <div class="card" *ngFor="let article of articles" (click)="openArticle(article)">
-      <img [src]="article.urlToImage || 'assets/placeholder.jpg'" alt="Imagen noticia">
-      <h3>{{ article.title }}</h3>
-      <p>{{ article.description }}</p>
-      <small>{{ article.publishedAt | date:'short' }}</small>
+    <div *ngIf="!selectedArticle" class="articles-grid">
+      <div class="card" *ngFor="let article of articles" (click)="openArticle(article)">
+        <img [src]="article.urlToImage || 'assets/placeholder.jpg'" alt="Imagen noticia">
+        <div class="card-content">
+          <h3>{{ article.title }}</h3>
+          <p>{{ article.description }}</p>
+          <small>{{ article.publishedAt | date:'short' }}</small>
+        </div>
+      </div>
     </div>
+
+    <div *ngIf="selectedArticle" class="article-detail">
+        <ion-buttons slot="start">
+          <ion-button (click)="closeArticle()">
+            <ion-icon name="arrow-back"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      <h2>{{ selectedArticle.title }}</h2>
+      <img [src]="selectedArticle.urlToImage || 'assets/placeholder.jpg'" alt="Imagen noticia">
+      <p>{{ selectedArticle.content }}</p>
+      <a [href]="selectedArticle.url" target="_blank" class="read-more-link">
+        <ion-button expand="block">Leer más</ion-button>
+      </a>
+    </div>
+
   </div>
 
-  <div *ngIf="selectedArticle" class="article-detail">
-    <h2>{{ selectedArticle.title }}</h2>
-    <img [src]="selectedArticle.urlToImage || 'assets/placeholder.jpg'" alt="Imagen noticia">
-    <p>{{ selectedArticle.content }}</p>
-    <a [href]="selectedArticle.url" target="_blank">
-      <button>Leer más</button>
-    </a>
-    <button (click)="closeArticle()">⬅ Volver</button>
-  </div>
-
-</div>
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Cargando más noticias...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

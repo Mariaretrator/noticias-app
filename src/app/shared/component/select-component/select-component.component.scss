@@ -4,10 +4,10 @@
   margin-bottom: 1.5rem;
 
   label {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 600;
-    margin-bottom: 0.4rem;
-    color: #333;
+    margin-bottom: 0.5rem;
+    color: #555;
   }
 
   .select-wrapper {
@@ -15,40 +15,52 @@
 
     select {
       width: 100%;
-      padding: 0.9rem 1rem;
-      padding-right: 2.5rem; 
-      border: 1px solid #ccc;
-      border-radius: 10px;
+      padding: 0.8rem 1rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
       font-size: 1rem;
-      background-color: #fff;
+      background-color: #f9f9f9;
       outline: none;
-      transition: all 0.2s ease;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
       cursor: pointer;
       appearance: none;
       -webkit-appearance: none;
       -moz-appearance: none;
 
+      &:hover {
+        border-color: #bbb;
+      }
+
       &:focus {
         border-color: #007bff;
-        box-shadow: 0 0 6px rgba(0, 123, 255, 0.4);
+        box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+        background-color: #fff;
       }
     }
 
     &::after {
-      content: "▼";
-      font-size: 0.8rem;
-      color: #555;
+      content: '';
       position: absolute;
       right: 1rem;
       top: 50%;
       transform: translateY(-50%);
+      width: 0.8em;
+      height: 0.5em;
+      background-color: #555;
+      clip-path: polygon(100% 0%, 0 0%, 50% 100%);
       pointer-events: none;
+      transition: background-color 0.2s ease;
+    }
+
+    select:hover + &::after {
+        background-color: #333;
     }
   }
 
   .error {
-    margin-top: 0.3rem;
-    font-size: 0.8rem;
-    color: #d9534f;
+    margin-top: 0.4rem;
+    font-size: 0.85rem;
+    color: #e74c3c;
+    font-weight: 500;
   }
 }

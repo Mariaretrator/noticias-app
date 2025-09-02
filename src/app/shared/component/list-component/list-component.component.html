@@ -1,0 +1,4 @@
+<div class="container">
+  <p *ngIf="mode === 'login'">¿No tienes una cuenta? <a (click)="navigateTo('/register')">Regístrate</a></p>
+  <p *ngIf="mode === 'register'">¿Ya tienes una cuenta? <a (click)="navigateTo('/login')">Inicia sesión</a></p>
+</div>

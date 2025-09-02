@@ -1,13 +1,7 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>home</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header [title]="'Inicio'" (profileClick)="onProfileClick()"></app-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">home</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <h1>Bienvenido a la Página de Inicio</h1>
 </ion-content>
+
+<app-sidebar *ngIf="isSidebarVisible" (optionSelected)="onSidebarOption($event)"></app-sidebar>

@@ -1,0 +1,19 @@
+.sidebar-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 250px;
+  height: 100%;
+  background: #ffffff;
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  padding-top: 60px; /* Space for the header */
+}
+
+ion-item {
+  --padding-start: 20px;
+}
+
+ion-icon {
+  margin-right: 15px;
+}

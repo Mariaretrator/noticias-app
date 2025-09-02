@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthResponse } from 'src/app/shared/interface/auth-response.interface';
-import { User } from 'src/app/shared/interface/user.interface';
-import { UserService } from 'src/app/shared/service/user.service';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { User } from '../../shared/interface/user.interface';
+import { AuthService } from '../../shared/service/auth.service';
+import { ToastService } from '../../shared/service/toast.service';
 
 @Component({
   selector: 'app-register',
@@ -9,20 +10,24 @@ import { UserService } from 'src/app/shared/service/user.service';
   styleUrls: ['./register.page.scss'],
   standalone: false
 })
-export class RegisterPage implements OnInit {
-  constructor(private userService: UserService) {}
+export class RegisterPage {
 
-  ngOnInit() {}
+  constructor(
+    private authService: AuthService,
+    private toastService: ToastService,
+    private router: Router
+  ) {}
 
   onRegister(user: User) {
-    this.userService.register(user).subscribe({
-      next: (res: AuthResponse) => {
-        console.log('Registro exitoso:', res);
+    this.authService.register(user).subscribe({
+      next: () => {
+        this.toastService.presentToast('Registro exitoso', 'success');
+        this.router.navigate(['/login']);
       },
       error: (err) => {
-        console.error('Error en el registro:', err);
+        const message = err.error?.message || 'Error en el registro. Por favor, inténtalo de nuevo.';
+        this.toastService.presentToast(message, 'danger');
       }
     });
   }
-
 }

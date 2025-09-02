@@ -24,7 +24,7 @@ export class UserFormComponent implements OnInit {
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
-      country: ['', Validators.required]
+      country: [null, Validators.required]
     });
 
     this.countryService.getCountries().subscribe({
@@ -33,8 +33,8 @@ export class UserFormComponent implements OnInit {
     });
   }
 
-  onCountrySelected(country: Country) {
-    this.form.patchValue({ country });
+  compareCountries(c1: Country, c2: Country): boolean {
+    return c1 && c2 ? c1.id === c2.id : c1 === c2;
   }
 
   onSubmit() {

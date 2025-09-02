@@ -6,10 +6,13 @@ import { SelectComponent } from './component/select-component/select-component.c
 import { ButtonComponentComponent } from './component/button-component/button-component.component';
 import { InputComponent } from './component/input-component/input-component.component';
 import { UserFormComponent } from './component/user-form-component/user-form-component.component';
+import { ListComponent } from './component/list-component/list-component.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { HeaderComponent } from './components/header/header.component';
 
 
 const MODULO = [CommonModule, FormsModule, IonicModule , ReactiveFormsModule];
-const COMPONENT = [SelectComponent , InputComponent , UserFormComponent , ButtonComponentComponent];
+const COMPONENT = [SelectComponent , InputComponent , UserFormComponent , ButtonComponentComponent , ListComponent , SidebarComponent , HeaderComponent];
 
 
 @NgModule({

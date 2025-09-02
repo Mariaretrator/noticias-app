@@ -1,17 +1,25 @@
-<ion-content class="ion-padding">
-  <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
-    <ion-item>
-      <ion-label position="floating">Email</ion-label>
-      <ion-input type="email" formControlName="email"></ion-input>
-    </ion-item>
+<ion-content>
+  <div class="container">
+    <h1 class="title">Iniciar Sesión</h1>
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <app-input 
+        label="Email" 
+        type="email" 
+        [control]="loginForm.get('email')">
+      </app-input>
 
-    <ion-item>
-      <ion-label position="floating">Password</ion-label>
-      <ion-input type="password" formControlName="password"></ion-input>
-    </ion-item>
+      <app-input 
+        label="Contraseña" 
+        type="password" 
+        [control]="loginForm.get('password')">
+      </app-input>
 
-    <ion-button expand="block" type="submit" [disabled]="loginForm.invalid">
-      Iniciar Sesión
-    </ion-button>
-  </form>
+      <app-button-component 
+        label="Iniciar Sesión"
+        [disabled]="loginForm.invalid">
+      </app-button-component>
+    </form>
+
+    <app-list-component mode="login"></app-list-component>
+  </div>
 </ion-content>

@@ -1,9 +1,7 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Registro</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content class="ion-padding">
-  <app-user-form (submitForm)="onRegister($event)"></app-user-form>
+<ion-content>
+  <div class="container">
+    <h1 class="title">Crear Cuenta</h1>
+    <app-user-form (submitForm)="onRegister($event)"></app-user-form>
+    <app-list-component mode="register"></app-list-component>
+  </div>
 </ion-content>

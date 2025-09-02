@@ -1,7 +1,16 @@
 <ion-content>
-  <div class="container">
-    <h1 class="title">Crear Cuenta</h1>
-    <app-user-form (submitForm)="onRegister($event)"></app-user-form>
-    <app-list-component mode="register"></app-list-component>
+  <div class="register-container">
+    <ion-card class="register-card">
+      <ion-card-header>
+        <ion-card-title class="register-title">Crear Cuenta</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <app-user-form (submitForm)="onRegister($event)"></app-user-form>
+        <div class="login-link">
+          <p>¿Ya tienes una cuenta? <a routerLink="/login">Inicia Sesión</a></p>
+        </div>
+        <app-list-component mode="register"></app-list-component>
+      </ion-card-content>
+    </ion-card>
   </div>
 </ion-content>

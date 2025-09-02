@@ -1,25 +1,35 @@
 <ion-content>
-  <div class="container">
-    <h1 class="title">Iniciar Sesión</h1>
-    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
-      <app-input 
-        label="Email" 
-        type="email" 
-        [control]="loginForm.get('email')">
-      </app-input>
+  <div class="login-container">
+    <ion-card class="login-card">
+      <ion-card-header>
+        <ion-card-title class="login-title">Iniciar Sesión</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onLogin()">
+          <app-input
+            label="Email"
+            type="email"
+            [control]="loginForm.get('email')">
+          </app-input>
 
-      <app-input 
-        label="Contraseña" 
-        type="password" 
-        [control]="loginForm.get('password')">
-      </app-input>
+          <app-input
+            label="Contraseña"
+            type="password"
+            [control]="loginForm.get('password')">
+          </app-input>
 
-      <app-button-component 
-        label="Iniciar Sesión"
-        [disabled]="loginForm.invalid">
-      </app-button-component>
-    </form>
-
-    <app-list-component mode="login"></app-list-component>
+          <div class="login-buttons">
+            <app-button-component
+              label="Iniciar Sesión"
+              [disabled]="loginForm.invalid">
+            </app-button-component>
+          </div>
+        </form>
+        <div class="register-link">
+          <p>¿No tienes una cuenta? <a routerLink="/register">Regístrate</a></p>
+        </div>
+        <app-list-component mode="login"></app-list-component>
+      </ion-card-content>
+    </ion-card>
   </div>
 </ion-content>

@@ -12,9 +12,9 @@ export class NewsService {
 
   constructor(private http: HttpClient) {}
 
-  getEverything(query: string = 'bitcoin', page: number = 1): Observable<any> {
-    return this.http.get(
-      `${this.apiUrl}/everything?q=${query}&page=${page}&pageSize=10&sortBy=publishedAt&apiKey=${this.apiKey}`
-    );
-  }
+  getEverything(query: string = 'tesla', page: number = 1): Observable<any> {
+  return this.http.get(
+    `${this.apiUrl}/everything?q=${query}&page=${page}&pageSize=10&sortBy=publishedAt&apiKey=${this.apiKey}`
+  );
+}
 }

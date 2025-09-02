@@ -1,0 +1,29 @@
+<app-header [title]="'Inicio'" (toggleSidebar)="toggleSidebar()"></app-header>
+
+<app-sidebar
+  [isOpen]="isSidebarOpen"
+  (optionSelected)="onSidebarOption($event)">
+</app-sidebar>
+
+<div class="content">
+
+  <div *ngIf="!selectedArticle">
+    <div class="card" *ngFor="let article of articles" (click)="openArticle(article)">
+      <img [src]="article.urlToImage || 'assets/placeholder.jpg'" alt="Imagen noticia">
+      <h3>{{ article.title }}</h3>
+      <p>{{ article.description }}</p>
+      <small>{{ article.publishedAt | date:'short' }}</small>
+    </div>
+  </div>
+
+  <div *ngIf="selectedArticle" class="article-detail">
+    <h2>{{ selectedArticle.title }}</h2>
+    <img [src]="selectedArticle.urlToImage || 'assets/placeholder.jpg'" alt="Imagen noticia">
+    <p>{{ selectedArticle.content }}</p>
+    <a [href]="selectedArticle.url" target="_blank">
+      <button>Leer más</button>
+    </a>
+    <button (click)="closeArticle()">⬅ Volver</button>
+  </div>
+
+</div>

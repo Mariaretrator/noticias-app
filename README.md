@@ -1,68 +1,47 @@
 # noticias-app
 
-Esta es una aplicación de noticias construida con Ionic y Angular.
+Esta es una aplicación de noticias construida con Ionic y Angular. La aplicación permite a los usuarios ver noticias de diversas fuentes, filtrarlas por país y ver los detalles de las noticias. También incluye funciones de autenticación de usuarios (registro e inicio de sesión).
+
+## Requisitos previos
+
+Asegúrate de tener Node.js y npm instalados en tu sistema.
+
+## Instalación
+
+1.  **Clonar el repositorio:**
+    ```bash
+    git clone https://github.com/Mariaretrator/noticias-app.git
+    cd noticias-app
+    ```
+
+2.  **Instalar Angular CLI:**
+    Si no tienes Angular CLI instalado globalmente, puedes instalarlo con el siguiente comando:
+    ```bash
+    npm install -g @angular/cli
+    ```
+
+3.  **Instalar Ionic CLI:**
+    Si no tienes Ionic CLI instalado globalmente, puedes instalarlo con el siguiente comando:
+    ```bash
+    npm install -g @ionic/cli
+    ```
+
+4.  **Instalar dependencias del proyecto:**
+    Dentro de la carpeta del proyecto, ejecuta el siguiente comando para instalar todas las dependencias necesarias.
+    ```bash
+    npm install
+    ```
 
 ## Cómo ejecutar la aplicación
 
-### 1. Ejecutar el servidor
-
-El servidor es necesario para que la aplicación funcione correctamente.
-
-```bash
-cd src/server
-npm run server
-```
-
-El servidor se ejecutará en `http://localhost:3000`.
-
-### 2. Ejecutar la aplicación Ionic
-
-Para ejecutar la aplicación en un entorno de desarrollo, utiliza el siguiente comando:
+Para ejecutar la aplicación en un entorno de desarrollo, utiliza el siguiente comando. La aplicación se abrirá en `http://localhost:8100`.
 
 ```bash
 ionic serve
 ```
-
-Esto abrirá la aplicación en tu navegador en `http://localhost:8100`.
-
-## Endpoints de la API
-
-Puedes utilizar una herramienta como Postman para interactuar con la API.
-
-### Registro
-
-*   **URL:** `http://localhost:3000/register`
-*   **Método:** `POST`
-*   **Cabeceras:**
-    *   `Content-Type`: `application/json`
-*   **Cuerpo:**
-
-```json
-{
-  "name": "Jane",
-  "lastName": "Doe",
-  "email": "jane@doe.com",
-  "password": "123456",
-  "country": {
-    "id": "Colombia",
-    "value": "🇨🇴 Colombia"
-  }
-}
-```
-
-### Iniciar Sesión
-
-*   **URL:** `http://localhost:3000/login`
-*   **Método:** `POST`
-*   **Cabeceras:**
-    *   `Content-Type`: `application/json`
-*   **Cuerpo:**
-
-```json
-{
-  "email": "jane@doe.com",
-  "password": "123456"
-}
+o también puedes usar el script de npm:
+```bash
+npm start
 ```
 
 ## APIs Utilizadas
